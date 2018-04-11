@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../standard.css" type="text/css">
+    <title>Comp 431: Homework</title>
+    <base target="_top"/>
+    <style>
+      section.terminals {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding-bottom: 2em;
+          margin-bottom: 2em;
+          border-bottom: 1px solid black;
+      }
+      div.example h1 {
+          font-size: 200%;
+          margin-bottom: 1em;
+          text-align: left;
+      }
+      section.terminals h4 {
+          margin: 0;
+      }
+      section.terminals input {
+          width: 80ex;
+      }
+      section.display .user {
+          font-weight: bold;
+          color: #008;
+      }
+      .spaced li h4 { margin: 0; }
+    </style>
+  </head>
+  <body>
+    <p>
+      For this homework assignment you will be creating a simple Angular
+      application that simulates an online chat.  This amazing chat program
+      will allow two people sitting at the same computer to talk to one
+      another as if they were sitting right next to each other!
+    </p>
+    <p>
+      The web page will consist of two <dfn>terminals</dfn>, each containing a
+      text box that the user can type messages into.  When the user enters a
+      message, it will be added to a <dfn>display</dfn> at the bottom of the
+      page.  This display will show all the messages that have been entered,
+      from most recent to least recent, each labeled with the name of the user
+      who submitted the message.
+    </p>
+    <div class="example">
+      <h1>The amazing chat program</h1>
+      <section class="terminals">
+        <div>
+          <h4>User One</h4>
+          <input type="text"/>
+        </div>
+        <div>
+          <h4>User Two</h4>
+          <input type="text"/>
+        </div>
+      </section>
+      <section class="display">
+        <p>
+          <span class="user">Two:</span> It's like I'm sitting right next to you!
+        </p>
+        <p>
+          <span class="user">Two:</span> I know, right?
+        </p>
+        <p>
+          <span class="user">One:</span> This chat program is amazing!
+        </p>
+        <p>
+          <span class="user">Two:</span> What's up?
+        </p>
+        <p>
+          <span class="user">One:</span> Hello
+        </p>
+      </section>
+    </div>
+
+    <p>
+      You should create and run this assignment using the Angular CLI as shown
+      in class.  The focus of this program is on creating Angular components
+      and sharing information between them.  You must create the following
+      components:
+    </p>
+
+    <ol class="spaced">
+      <li><h4>The Display</h4>
+        <p>
+          This component will show all the messages that have been typed from
+          most recent to least recent.  Each message will be labeled with the user
+          who submitted it.  The display component should have an input property
+          for the array of messages.  It should not alter the messages.
+        </p>
+      </li>
+      <li><h4>The Terminal</h4>
+        <p>
+          This component will allow <em>one</em> user to enter messages.  It
+          consists of a text input labeled with the name of the user.  The
+          terminal component should have an input property for the name of the
+          user, and an output event that is triggered when the user enters a
+          message.
+        </p>
+        <p>
+          Because Angular is an opinionated framework, I recommend that you
+          do <em>not</em> use a form in the template of this component.
+          (Angular has opinions on how forms should be used in an
+          application.)  Instead, you may create a button the user can click
+          to submit a message, or you may register a handler for the special
+          angular event <code>keydown.enter</code> to trigger an event every
+          time the user presses the Enter key.
+        </p>
+        <pre>&lt;input type="text" (keydown.enter)="submitMessage()"/&gt;</pre>
+        <p>
+          You should <em>not</em> submit an empty message; if the text box is
+          empty when the user clicks the button and / or presses the Enter key
+          then do nothing.  Any time a message is submitted you should clear
+          out the input box so that it is ready for the next message.
+        </p>
+      </li>
+      <li><h4>The application component</h4>
+        <p>
+          This is your root component.  It should contain two terminal
+          components (one for user "One" and one for user "Two") and a
+          display.
+        </p>
+        <p>
+          This component should be in charge of managing the list of
+          messages.  It should create the initial list and give it to the
+          display component.  Then, any time one of the terminals fires its
+          event indicating a new message has been submitted it should add it
+          to the list.  (You may want to use the
+          array's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift">unshift</a> method.)
+        </p>
+      </li>
+    </ol>
+    <p>
+      Use CSS to make your components look nice.  You should have at least one
+      CSS rule for each component.
+    </p>
+  </body>
+</html>
