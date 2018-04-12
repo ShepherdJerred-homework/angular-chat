@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagesService } from '../messages.service';
+import { Message } from '../message';
 
 @Component({
   selector: 'app-display',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayComponent implements OnInit {
 
-  constructor() { }
+  messages: Message[];
 
-  ngOnInit() {
+  constructor (private messageService: MessagesService) { }
+
+  ngOnInit () {
+    this.messages = this.messageService.getMessages();
   }
 
 }
