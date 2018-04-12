@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MessagesService } from '../messages.service';
+import { Message } from '../message';
 
 @Component({
   selector: 'app-terminal',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TerminalComponent implements OnInit {
 
-  constructor() { }
+  @Input() user: string;
+  message: string;
 
-  ngOnInit() {
+  constructor (private messageService: MessagesService) {
+  }
+
+  ngOnInit () {
+  }
+
+  onSend () {
+    if (this.message === '') {
+      return;
+    }
+    console.log(this.user);
+    this.messageService.postMessage(new Message(this.user, this.message));
+    this.message = '';
   }
 
 }

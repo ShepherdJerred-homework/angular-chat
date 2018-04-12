@@ -1,3 +1,4 @@
-<p>
-  terminal works!
-</p>
+<label>
+    <span class="terminal--name">{{ user }}</span>
+    <input type="text" [(ngModel)]="message" (keydown.enter)="onSend()">
+</label>
